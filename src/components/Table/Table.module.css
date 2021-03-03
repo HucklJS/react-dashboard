@@ -1,0 +1,127 @@
+.table-wrap {
+  color: black;
+}
+
+.table {
+  width: 100%;
+  /*border-collapse: collapse;*/
+  border-collapse:separate;
+  border-spacing: 0 12px;
+}
+
+.tr {
+  text-align: left;
+}
+
+.tr-head .th {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  text-transform: uppercase;
+  color: #999999;
+}
+
+.tr-content {
+  background: #FFFFFF;
+}
+
+.tr-content:hover {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.tr-content .td{
+  position: relative;
+  padding: 20px 0;
+}
+
+.tr-content .td:first-child::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  /*change backgrounds for different companies
+  !!!!!!
+  */
+  background: #E14165;
+  border-radius: 3px 0px 0px 3px;
+}
+
+.tr .td:first-child, .th:first-child {
+  padding-left: 12px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.tr-content .td:last-child, .th:last-child {
+  padding-right: 12px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  text-align: right;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  color: #474747;
+}
+
+.type {
+  font-size: 12px;
+  line-height: 14px;
+  color: #5C5C5C;
+}
+
+.status {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #5C5C5C;
+}
+
+.status.online {
+  color: #1BDA9D;
+}
+
+.status.paused {
+  color: #FF8346;
+}
+
+.status.stopped {
+  color: #FE4848;
+}
+
+.site {
+  font-size: 12px;
+  line-height: 14px;
+  color: #5C5C5C;
+}
+
+.button-wrap button {
+  padding: 6px 18px;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.button-wrap .results {
+  background-color: #2EE5AC;
+}
+
+.button-wrap .finalize {
+  background-color: #7D7D7D;
+}
+
+.button-wrap .results:hover, .button-wrap .results:focus {
+  background-color: #1ED5AC;
+}
+
+.button-wrap .finalize:hover, .button-wrap .finalize:hover {
+  background-color: #6D6D6D;
+}

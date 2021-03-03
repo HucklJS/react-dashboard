@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 14px;
+}
+
+/*ШРИФТЫ
+
+!!!!!!!!
+*/
+
+body {
+  background: #E5E5E5;
+}
+
+.App {
+  padding: 45px 0;
+}
+
+.container {
+  max-width: 956px;
+  margin: 0 auto;
+}
+
+.title {
+  margin:0 0 40px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 32px;
+}
+
+.search-form {
+  position: relative;
+  margin-bottom: 30px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #D1D1D1;
+}
+
+.search-form input {
+  width: 100%;
+  padding: 15px 82px 15px 37px;
+  border-radius: 15px;
+  outline: none;
+  background: #FFFFFF;
+  color: inherit;
+  border: 1px solid #EBEBEB;
+}
+
+.search-form input:focus{
+  color: black;
+}
+
+.search-form input::placeholder {
+  color: #D1D1D1;
+}
+
+.search-form input:hover {
+  border: 1px solid gray;
+}
+
+.search-form::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 15px;
+  height: 15px;
+  background: url("Search.svg") no-repeat;
+}
+
+.search-form::after {
+  content: '7 tests';
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-55%);
+  z-index: 5;
+  color: inherit;
+}
