@@ -10,6 +10,13 @@ function App() {
     loading: true,
   })
 
+  const [searchStr, setSearchStr] = React.useState('')
+
+  function onInput(e: React.SyntheticEvent) {
+    const target = e.target as HTMLInputElement
+    setSearchStr(target.value)
+  }
+
   React.useEffect(() => {
     async function fetchData() {
       try {
@@ -38,14 +45,24 @@ function App() {
       <div className="container">
         <h1 className="title">Dashboard</h1>
         <div className="search-form">
-          <input type="text" placeholder="What test are you looking for?"/>
+          <input
+            type="text"
+            placeholder="What test are you looking for?"
+            value={searchStr}
+            onInput={onInput}
+          />
         </div>
         {state.loading ?
           <div>Loading...</div> :
           (state.error ?
             <div>Error happened</div> :
-              // @ts-ignore
-              <Table sites={state.data.sites} tests={state.data.tests}/>
+              <Table
+                // @ts-ignore
+                sites={state.data.sites}
+                // @ts-ignore
+                tests={state.data.tests}
+                searchStr={searchStr}
+              />
           )
         }
       </div>

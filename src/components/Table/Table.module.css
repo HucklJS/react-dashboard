@@ -22,6 +22,11 @@
   color: #999999;
 }
 
+.th .th-text {
+  display: inline-block;
+  cursor: pointer;
+}
+
 .tr-content {
   background: #FFFFFF;
 }
@@ -122,6 +127,6 @@
   background-color: #1ED5AC;
 }
 
-.button-wrap .finalize:hover, .button-wrap .finalize:hover {
+.button-wrap .finalize:hover, .button-wrap .finalize:focus {
   background-color: #6D6D6D;
 }

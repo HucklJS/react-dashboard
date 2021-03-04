@@ -5,7 +5,6 @@ type SiteType = {
   id: number,
   url: string
 }
-
 type TestType = {
   id: number,
   name: string,
@@ -13,13 +12,20 @@ type TestType = {
   status: string,
   siteId: number
 }
-
 type TableProps = {
   sites: Array<SiteType>,
-  tests: Array<TestType>
+  tests: Array<TestType>,
+  searchStr: string
 }
 
-function Table({sites, tests}: TableProps) {
+function Table({sites, tests, searchStr}: TableProps) {
+  function filterTests(tests: TestType[]) {
+    return tests.filter(test =>
+      test.name.toLowerCase().includes(searchStr.toLowerCase())
+    )
+  }
+  const filteredTests = filterTests(tests)
+
   function createSiteList(tests: TestType[]) {
     // return ["delivery.company.com", "games.company.com", ...]
     return tests
@@ -36,23 +42,34 @@ function Table({sites, tests}: TableProps) {
         return ''
       })
   }
-  const siteList = createSiteList(tests)
+  const siteList = createSiteList(filteredTests)
+
+  const totalTests = filteredTests
 
   return (
     <div className={s['table-wrap']}>
-      <table className={s['table']}>
-        <thead>
+      {totalTests.length ?
+        <table className={s['table']}>
+          <thead>
           <tr className={`${s['tr']} ${s['tr-head']}`}>
-            <th className={s['th']}>Name</th>
-            <th className={s['th']}>Type</th>
-            <th className={s['th']}>Status</th>
-            <th className={s['th']}>Site</th>
+            <th className={s['th']}>
+              <span className={s['th-text']}>Name</span>
+            </th>
+            <th className={s['th']}>
+              <span className={s['th-text']}>Type</span>
+            </th>
+            <th className={s['th']}>
+              <span className={s['th-text']}>Status</span>
+            </th>
+            <th className={s['th']}>
+              <span className={s['th-text']}>Site</span>
+            </th>
             <th className={s['th']}></th>
           </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
           {
-            tests.map((test, i) => {
+            totalTests.map((test, i) => {
               return (
                 <tr className={`${s['tr']} ${s['tr-content']}`} key={test.id}>
                   <td className={`${s['td']} ${s['name']}`}>
@@ -85,8 +102,13 @@ function Table({sites, tests}: TableProps) {
               )
             })
           }
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+        :
+        <div className='no-table'>
+          no-table
+        </div>
+      }
     </div>
   );
 }
