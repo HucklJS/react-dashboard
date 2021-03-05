@@ -17,6 +17,30 @@ function App() {
     setSearchStr(target.value)
   }
 
+  const [sorting, setSorting] = React.useState({
+    by: 'type',
+    order: 'ASC'
+  })
+
+  function onThClick(e: React.SyntheticEvent) {
+    const target = (e.target as HTMLTableRowElement).closest('[data-sort-by]')
+    if (!target) return
+    const sortBy = (target as HTMLElement).dataset.sortBy
+
+    console.log()
+    if (sorting.by === sortBy) {
+      setSorting({
+        ...sorting,
+        order: sorting.order === 'ASC' ? 'DESC' : 'ASC',
+      })
+    } else {
+      setSorting({
+        by: sortBy ?? 'type',
+        order: 'ASC',
+      })
+    }
+  }
+
   React.useEffect(() => {
     async function fetchData() {
       try {
@@ -53,16 +77,20 @@ function App() {
           />
         </div>
         {state.loading ?
-          <div>Loading...</div> :
+          <div>Loading...</div>
+          :
           (state.error ?
-            <div>Error happened</div> :
-              <Table
-                // @ts-ignore
-                sites={state.data.sites}
-                // @ts-ignore
-                tests={state.data.tests}
-                searchStr={searchStr}
-              />
+            <div>Error happened</div>
+            :
+            <Table
+              // @ts-ignore
+              sites={state.data.sites}
+              // @ts-ignore
+              tests={state.data.tests}
+              searchStr={searchStr}
+              onThClick={onThClick}
+              sorting={sorting}
+            />
           )
         }
       </div>
